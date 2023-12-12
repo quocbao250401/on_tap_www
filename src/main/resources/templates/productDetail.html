@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-3">Product Detail</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Product Details -->
+            <h3 th:text="${product.name}"></h3>
+            <p><strong>Unit:</strong> <span th:text="${product.unit}"></span></p>
+            <p><strong>Status:</strong> <span th:text="${product.status}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${product.description}"></span></p>
+            <p><strong>Manufacturer:</strong> <span th:text="${product.manufacturer}"></span></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

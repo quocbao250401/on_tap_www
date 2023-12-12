@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sach san pham</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-3">Product List</h2>
+    <a th:href="@{/product/add}" class="btn btn-primary mt-3">Add Product</a>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Unit</th>
+            <th>Status</th>
+            <th>Description</th>
+            <th>Manufacturer</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${productList}">
+            <td th:text="${product.product_id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.unit}"></td>
+            <td th:text="${product.status}"></td>
+            <td th:text="${product.description}"></td>
+            <td th:text="${product.manufacturer}"></td>
+            <td>
+                <a th:href="@{/product/detail(id=${product.product_id})}" class="btn btn-danger">Detail</a>
+            </td>
+            <td>
+                <a th:href="@{/product/edit(id=${product.product_id})}" class="btn btn-primary">Edit</a></td>
+            <td>
+                <a th:href="@{/product/delete(id=${product.product_id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${productList.first ? 'disabled' : ''}">
+                <a class="page-link" th:href="@{/product/list(page=${productList.number-1})}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item" th:each="pageNumber : ${#numbers.sequence(0, productList.totalPages-1)}" th:classappend="${pageNumber == productList.number ? 'active' : ''}">
+                <a class="page-link" th:href="@{/product/list(page=${pageNumber})}" th:text="${pageNumber + 1}"></a>
+            </li>
+            <li class="page-item" th:classappend="${productList.last ? 'disabled' : ''}">
+                <a class="page-link" th:href="@{/product/list(page=${productList.number+1})}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>
